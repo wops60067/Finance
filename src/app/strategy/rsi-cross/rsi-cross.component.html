@@ -1,0 +1,56 @@
+<div class="p-4 bg-white shadow rounded-md">
+    <h2 class="text-xl font-semibold mb-4">RSI 策略回測</h2>
+  
+    <div class="grid grid-cols-3 gap-4 mb-4">
+        <label>
+          RSI 期間：
+          <input type="number" [(ngModel)]="rsiPeriod" class="border px-2 py-1 rounded w-full" />
+        </label>
+        <label>
+          超買區（賣出）：
+          <input type="number" [(ngModel)]="overbought" class="border px-2 py-1 rounded w-full" />
+        </label>
+        <label>
+          超賣區（買入）：
+          <input type="number" [(ngModel)]="oversold" class="border px-2 py-1 rounded w-full" />
+        </label>
+        <label>
+          起始資金：
+          <input type="number" [(ngModel)]="startCapital" class="border px-2 py-1 rounded w-full" />
+        </label>
+      </div>
+  
+    <button (click)="backtest()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      執行回測
+    </button>
+  
+    <div *ngIf="stats" class="mt-4">
+      <p>總交易次數：{{ stats.totalTrades }}</p>
+      <p>勝率：{{ stats.winRate }}%</p>
+      <p>總損益：{{ stats.totalPnl }}</p>
+      <p *ngIf="endCapital !== null">最終資金：{{ endCapital }}</p>
+      <p *ngIf="returnRate !== null">報酬率：{{ returnRate }}%</p>
+    </div>
+  
+    <table *ngIf="trades.length > 0" class="mt-4 w-full border text-sm">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="border px-2">方向</th>
+          <th class="border px-2">進場價</th>
+          <th class="border px-2">出場價</th>
+          <th class="border px-2">損益</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trade of trades">
+          <td class="border px-2">{{ trade.direction }}</td>
+          <td class="border px-2">{{ trade.entryPrice }}</td>
+          <td class="border px-2">{{ trade.exitPrice }}</td>
+          <td class="border px-2" [ngClass]="{'text-green-600': trade.pnl > 0, 'text-red-600': trade.pnl < 0}">
+            {{ trade.pnl }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="strategy" (change)="onRSIStrategySelected('RSI')">
+            RSI strategy
+        </label>
+        <label>
+            <input type="radio" name="strategy">
+            MACD strategy
+        </label>
+        <label>
+            <input type="radio" name="strategy">
+            Bollinger Bands strategy
+        </label>
+    </div>
+    <div class="strategy-display" *ngIf="selectedStrategy === 'RSI'">
+        <app-rsi-cross></app-rsi-cross>
+    </div>
+</div>

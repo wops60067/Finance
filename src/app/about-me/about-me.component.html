@@ -1,0 +1,99 @@
+<div class="about-container">
+  <!-- 主要標題區域 -->
+  <section class="hero-section">
+    <div class="floating-particles"></div>
+    <div class="hero-content">
+      <div class="typewriter-container">
+        <h1 class="typewriter-text">{{ currentText }}<span class="cursor">|</span></h1>
+      </div>
+      <div class="hero-subtitle">
+        <p class="fade-in-up">打造你的財富管理未來</p>
+      </div>
+      <button class="cta-button" (click)="scrollToSkills()" (click)="handleInteractiveClick($event)">
+        探索我的技能 ⚡
+      </button>
+    </div>
+  </section>
+
+  <!-- 個人資訊卡片區域 -->
+  <section class="cards-section">
+    <h2 class="section-title glitch-text">關於我的故事</h2>
+    <div class="cards-grid">
+      <div 
+        *ngFor="let card of personalCards; let i = index"
+        class="info-card"
+        [class.flipped]="card.isFlipped"
+        (click)="flipCard(i)"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <h3>{{ card.title }}</h3>
+            <div class="card-hover-hint">點擊翻轉 🔄</div>
+          </div>
+          <div class="card-back">
+            <p>{{ card.content }}</p>
+            <div class="card-decoration">✨</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能展示區域 -->
+  <section class="skills-section">
+    <h2 class="section-title neon-text">我的專業技能</h2>
+    <div class="skills-container">
+      <div 
+        *ngFor="let skill of skills; let i = index"
+        class="skill-item"
+        [class.animate]="isSkillsVisible"
+        [style.animation-delay.ms]="i * 200"
+      >
+        <div class="skill-info">
+          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-percentage">{{ skill.level }}%</span>
+        </div>
+        <div class="skill-bar">
+          <div 
+            class="skill-progress"
+            [style.width.%]="isSkillsVisible ? skill.level : 0"
+            [style.background-color]="skill.color"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 互動區域 -->
+  <section class="interactive-section">
+    <h2 class="section-title rainbow-text">來互動一下吧！</h2>
+    <div class="interactive-content">
+      <div class="click-area" (click)="handleInteractiveClick($event)">
+        <div class="click-text">
+          <p>點擊我 {{ clickCount }}/5</p>
+          <p class="hint">連續點擊5次看看會發生什麼... 🎁</p>
+        </div>
+      </div>
+      
+      <div class="contact-info">
+        <div class="contact-item bounce-in">
+          <i class="icon">📧</i>
+          <span>leo&#64;financeproject.com</span>
+        </div>
+        <div class="contact-item bounce-in" style="animation-delay: 0.2s">
+          <i class="icon">🐙</i>
+          <span>GitHub: leo-finance</span>
+        </div>
+        <div class="contact-item bounce-in" style="animation-delay: 0.4s">
+          <i class="icon">💼</i>
+          <span>LinkedIn: Leo Finance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 彩蛋效果容器 -->
+  <div class="easter-egg-container">
+    <div class="particle" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"></div>
+  </div>
+</div>

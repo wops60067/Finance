@@ -1,0 +1,20 @@
+<div class="chart-controls">
+  <label for="symbolSelect">選擇標的：</label>
+  <select id="symbolSelect" [(ngModel)]="selectedSymbol" (change)="onSelectChange()" >
+    <option value="OANDA:XAUUSD">黃金</option>
+    <option value="BITSTAMP:BTCUSD">比特幣</option>
+    <option value="NASDAQ:TSLA">特斯拉</option>
+    <option value="SP:SPX">標普500</option>
+  </select>
+
+  <input type="text" [(ngModel)]="customSymbol" (input)="onInputChange()" placeholder="輸入自選代碼，如 AAPL" />
+  <button (click)="updateChart()">載入</button>
+</div>
+
+<div class="chart-wrapper">
+  <div id="tradingview_12345"></div>
+</div>
+
+<div class="chart-heapmap">
+  <div id="heapmap-widget-container"></div>
+</div>

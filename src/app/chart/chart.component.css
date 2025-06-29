@@ -1,0 +1,123 @@
+/* chart.component.css */
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .chart-wrapper {
+    width: 100%;
+    height: 500px;
+    min-height: 500px;
+  }
+  .chart-heapmap {
+    width: 100%;
+    height: 500px;
+    min-height: 500px;
+  }
+  
+  #tradingview_12345 {
+    width: 100%;
+    height: 100%;
+  }
+  #heapmap-widget-container{
+    width: 100%;
+    height: 100%;
+  }
+  .chart-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .chart-controls label {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  .chart-controls select,
+  .chart-controls input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 120px;
+  }
+  
+  .chart-controls button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chart-controls button:hover {
+    background-color: #0056b3;
+  }
+
+  /* 響應式設計 */
+  @media (max-width: 768px) {
+    :host {
+      padding: 10px;
+    }
+    
+    .chart-controls {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 15px;
+    }
+    
+    .chart-controls label {
+      font-size: 16px;
+    }
+    
+    .chart-controls select,
+    .chart-controls input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      min-width: auto;
+    }
+    
+    .chart-controls button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+    
+    .chart-wrapper,
+    .chart-heapmap {
+      height: 300px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :host {
+      padding: 5px;
+    }
+    
+    .chart-controls {
+      gap: 10px;
+    }
+    
+    .chart-controls select,
+    .chart-controls input,
+    .chart-controls button {
+      padding: 10px;
+      font-size: 14px;
+    }
+    
+    .chart-wrapper,
+    .chart-heapmap {
+      height: 250px;
+    }
+  }
+  
