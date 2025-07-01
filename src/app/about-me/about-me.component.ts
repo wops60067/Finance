@@ -9,54 +9,57 @@ import { CommonModule } from '@angular/common';
   styleUrl: './about-me.component.css'
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
-  // 打字機效果相關
+  // Typewriter effect related
   currentText = '';
   fullTexts = [
-    '嗨！我是 Leo 👋',
-    '金融科技愛好者 📈',
-    '程式開發者 💻', 
-    '投資策略研究員 📊',
-    '歡迎來到我的世界！ 🌟'
+    'Hi! I\'m Leo 👋',
+    'FinTech Enthusiast 📈',
+    'Software Developer 💻', 
+    'Investment Strategy Researcher 📊',
+    'Welcome to my world! 🌟'
   ];
   currentTextIndex = 0;
   currentCharIndex = 0;
   typewriterInterval: any;
   
-  // 技能資料
+  // Skills data
   skills = [
     { name: 'Angular', level: 85, color: '#dd0031' },
     { name: 'JavaScript', level: 90, color: '#f7df1e' },
     { name: 'Python', level: 80, color: '#3776ab' },
-    { name: '金融分析', level: 88, color: '#28a745' },
+    { name: 'Financial Analysis', level: 88, color: '#28a745' },
     { name: 'TradingView', level: 92, color: '#131722' },
     { name: 'TypeScript', level: 85, color: '#3178c6' }
   ];
   
-  // 互動狀態
+  // Interactive states
   isSkillsVisible = false;
   clickCount = 0;
   lastClickTime = 0;
   
-  // 個人資訊卡片
+  // Performance tab state
+  activeTab = 'overall';
+  
+  // Personal Information Cards
   personalCards = [
     {
-      title: '🎯 專業領域',
-      content: '金融科技開發、量化交易策略、數據分析',
+      title: '🎯 Professional Field',
+      content: 'FinTech Development, Quantitative Trading Strategies, Data Analysis',
       isFlipped: false
     },
     {
-      title: '🚀 技術專長', 
-      content: 'Angular、Python、JavaScript、Machine Learning',
+      title: '🚀 Technical Expertise', 
+      content: 'Angular, Python, JavaScript, Machine Learning',
       isFlipped: false
     },
     {
-      title: '📈 投資經驗',
-      content: '股票、外匯、加密貨幣策略開發與回測',
+      title: '📈 Investment Experience',
+      content: 'Stock, Forex, Cryptocurrency Strategy Development & Backtesting',
       isFlipped: false
     },
     {
-      title: '🎓 學習理念',
-      content: '持續學習新技術，將理論與實踐相結合',
+      title: '🎓 Learning Philosophy',
+      content: 'Continuous learning of new technologies, combining theory with practice',
       isFlipped: false
     }
   ];
@@ -80,7 +83,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         this.currentText += currentFullText[this.currentCharIndex];
         this.currentCharIndex++;
       } else {
-        // 等待一段時間後清除文字
+        // Wait for a moment then clear text
         setTimeout(() => {
           this.currentText = '';
           this.currentCharIndex = 0;
@@ -90,7 +93,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  // 技能條動畫
+  // Skills bar animation
   animateSkillsOnScroll() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -108,30 +111,11 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-  // 卡片翻轉
+  // Card flip
   flipCard(index: number) {
     this.personalCards[index].isFlipped = !this.personalCards[index].isFlipped;
   }
 
-  // 互動點擊效果
-  handleInteractiveClick(event: MouseEvent) {
-    const now = Date.now();
-    if (now - this.lastClickTime < 300) {
-      this.clickCount++;
-    } else {
-      this.clickCount = 1;
-    }
-    this.lastClickTime = now;
-
-    // 建立點擊波紋效果
-    this.createRipple(event);
-
-    // 多次點擊彩蛋
-    if (this.clickCount >= 5) {
-      this.triggerEasterEgg();
-      this.clickCount = 0;
-    }
-  }
 
   createRipple(event: MouseEvent) {
     const ripple = document.createElement('div');
@@ -154,7 +138,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   }
 
   triggerEasterEgg() {
-    // 彩蛋效果：全螢幕彩色粒子
+    // Easter egg effect: full-screen colorful particles
     const container = document.querySelector('.about-container');
     if (container) {
       container.classList.add('easter-egg-active');
@@ -164,11 +148,30 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }
   }
 
-  // 滾動到技能區域
+  // Scroll to skills section
   scrollToSkills() {
     const skillsSection = document.querySelector('.skills-section');
     if (skillsSection) {
       skillsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Switch performance tabs
+  switchTab(tabName: string, event: Event) {
+    event.preventDefault();
+    this.activeTab = tabName;
+    
+    // Update button state
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    (event.target as HTMLElement).classList.add('active');
+    
+    // Update content display
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+    const activeContent = document.getElementById(tabName);
+    if (activeContent) {
+      activeContent.classList.add('active');
     }
   }
 }

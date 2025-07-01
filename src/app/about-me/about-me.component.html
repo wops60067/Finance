@@ -1,99 +1,211 @@
 <div class="about-container">
-  <!-- 主要標題區域 -->
+  <!-- 個人介紹區域 -->
   <section class="hero-section">
-    <div class="floating-particles"></div>
     <div class="hero-content">
-      <div class="typewriter-container">
-        <h1 class="typewriter-text">{{ currentText }}<span class="cursor">|</span></h1>
+      <div class="profile-image">
+        <img src="/assets/profile.jpg" alt="Leo Profile" class="profile-pic">
+        <div class="profile-border"></div>
       </div>
-      <div class="hero-subtitle">
-        <p class="fade-in-up">打造你的財富管理未來</p>
+      <div class="intro-text">
+        <h1 class="typewriter">{{ currentText }}<span class="cursor">|</span></h1>
+        <p class="subtitle">Professional Algorithmic Trading Strategy Developer | FinTech Enthusiast</p>
+        <button class="cta-button" (click)="scrollToSkills()">Learn More</button>
       </div>
-      <button class="cta-button" (click)="scrollToSkills()" (click)="handleInteractiveClick($event)">
-        探索我的技能 ⚡
-      </button>
     </div>
   </section>
 
-  <!-- 個人資訊卡片區域 -->
+  <!-- 個人資訊卡片 -->
   <section class="cards-section">
-    <h2 class="section-title glitch-text">關於我的故事</h2>
-    <div class="cards-grid">
-      <div 
-        *ngFor="let card of personalCards; let i = index"
-        class="info-card"
-        [class.flipped]="card.isFlipped"
-        (click)="flipCard(i)"
-      >
+    <div class="cards-container">
+      <div class="card" 
+           *ngFor="let card of personalCards; let i = index"
+           [class.flipped]="card.isFlipped"
+           (click)="flipCard(i)">
         <div class="card-inner">
           <div class="card-front">
             <h3>{{ card.title }}</h3>
-            <div class="card-hover-hint">點擊翻轉 🔄</div>
+            <p>Click for Details</p>
           </div>
           <div class="card-back">
             <p>{{ card.content }}</p>
-            <div class="card-decoration">✨</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 技能展示區域 -->
+  <!-- Algorithmic Trading Strategy Introduction -->
+  <section class="strategy-section">
+    <div class="section-header">
+      <h2>Algorithmic Trading Strategy Introduction</h2>
+      <div class="section-divider"></div>
+    </div>
+    
+    <div class="strategy-content">
+      <div class="strategy-overview">
+        <h3>🎯 Strategy Overview</h3>
+        <p>
+          Specializing in quantitative trading strategy development, combining technical analysis indicators with machine learning algorithms,
+          to develop various trading strategies suitable for different market environments. Main areas of expertise include:
+        </p>
+        <ul class="strategy-list">
+          <li><strong>Technical Indicator Strategies:</strong> Classic indicator combinations including RSI, MACD, Bollinger Bands</li>
+          <li><strong>Momentum Strategies:</strong> Trend following and reversal strategies</li>
+          <li><strong>Arbitrage Strategies:</strong> Cross-market and cross-timeframe arbitrage</li>
+          <li><strong>Machine Learning Strategies:</strong> Using AI to predict market movements</li>
+        </ul>
+      </div>
+
+      <div class="strategy-features">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h4>Data-Driven</h4>
+            <p>Based on extensive historical data analysis to ensure statistical significance of strategies</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h4>Risk Control</h4>
+            <p>Comprehensive stop-loss mechanisms and capital management to protect capital safety</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h4>Automated Execution</h4>
+            <p>Fully automated trading execution, eliminating human emotional interference</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h4>Continuous Optimization</h4>
+            <p>Regular backtesting and parameter adjustments to adapt to market changes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Display Area -->
+  <section class="performance-section">
+    <div class="section-header">
+      <h2>Strategy Performance Display</h2>
+      <div class="section-divider"></div>
+    </div>
+    
+    <div class="performance-gallery">
+      <div class="performance-tabs">
+        <button class="tab-button active" (click)="switchTab('overall', $event)">Overall Performance</button>
+        <button class="tab-button" (click)="switchTab('monthly', $event)">Monthly Analysis</button>
+        <button class="tab-button" (click)="switchTab('strategy', $event)">Strategy Comparison</button>
+        <button class="tab-button" (click)="switchTab('risk', $event)">Risk Analysis</button>
+      </div>
+
+      <div class="performance-content">
+        <!-- Overall Performance Tab -->
+        <div class="tab-content active" id="overall">
+          <div class="performance-stats">
+            <div class="stat-card">
+              <h4>Total Return</h4>
+              <span class="stat-value positive">+127.5%</span>
+            </div>
+            <div class="stat-card">
+              <h4>Annualized Return</h4>
+              <span class="stat-value positive">+42.3%</span>
+            </div>
+            <div class="stat-card">
+              <h4>Maximum Drawdown</h4>
+              <span class="stat-value">-8.2%</span>
+            </div>
+            <div class="stat-card">
+              <h4>Sharpe Ratio</h4>
+              <span class="stat-value positive">2.15</span>
+            </div>
+          </div>
+          
+          <div class="chart-container">
+            <img src="/assets/performance/overall-performance.png" alt="Overall Performance Chart" class="performance-chart">
+            <div class="chart-description">
+              <p>Cumulative return curve since strategy started running in 2022, showing stable upward trend</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly Analysis Tab -->
+        <div class="tab-content" id="monthly">
+          <div class="chart-container">
+            <img src="/assets/performance/monthly-returns.png" alt="Monthly Return Analysis" class="performance-chart">
+            <div class="chart-description">
+              <p>Distribution of monthly returns, showing strategy performance in different market environments</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategy Comparison Tab -->
+        <div class="tab-content" id="strategy">
+          <div class="chart-container">
+            <img src="/assets/performance/strategy-comparison.png" alt="Strategy Comparison" class="performance-chart">
+            <div class="chart-description">
+              <p>Multiple strategy performance comparison, including benchmark index comparison</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Risk Analysis Tab -->
+        <div class="tab-content" id="risk">
+          <div class="chart-container">
+            <img src="/assets/performance/risk-analysis.png" alt="Risk Analysis" class="performance-chart">
+            <div class="chart-description">
+              <p>Detailed risk indicator analysis, including VaR, volatility and other risk metrics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Display Area -->
   <section class="skills-section">
-    <h2 class="section-title neon-text">我的專業技能</h2>
+    <div class="section-header">
+      <h2>Technical Skills</h2>
+      <div class="section-divider"></div>
+    </div>
+    
     <div class="skills-container">
-      <div 
-        *ngFor="let skill of skills; let i = index"
-        class="skill-item"
-        [class.animate]="isSkillsVisible"
-        [style.animation-delay.ms]="i * 200"
-      >
+      <div class="skill-item" 
+           *ngFor="let skill of skills"
+           [class.animate]="isSkillsVisible">
         <div class="skill-info">
           <span class="skill-name">{{ skill.name }}</span>
           <span class="skill-percentage">{{ skill.level }}%</span>
         </div>
         <div class="skill-bar">
-          <div 
-            class="skill-progress"
-            [style.width.%]="isSkillsVisible ? skill.level : 0"
-            [style.background-color]="skill.color"
-          ></div>
+          <div class="skill-progress" 
+               [style.width.%]="isSkillsVisible ? skill.level : 0"
+               [style.background-color]="skill.color">
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 互動區域 -->
-  <section class="interactive-section">
-    <h2 class="section-title rainbow-text">來互動一下吧！</h2>
-    <div class="interactive-content">
-      <div class="click-area" (click)="handleInteractiveClick($event)">
-        <div class="click-text">
-          <p>點擊我 {{ clickCount }}/5</p>
-          <p class="hint">連續點擊5次看看會發生什麼... 🎁</p>
-        </div>
+  <!-- Contact Information -->
+  <section class="contact-section">
+    <div class="section-header">
+      <h2>Contact Information</h2>
+      <div class="section-divider"></div>
+    </div>
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <span>leo.financeexample.com</span>
       </div>
-      
-      <div class="contact-info">
-        <div class="contact-item bounce-in">
-          <i class="icon">📧</i>
-          <span>leo&#64;financeproject.com</span>
-        </div>
-        <div class="contact-item bounce-in" style="animation-delay: 0.2s">
-          <i class="icon">🐙</i>
-          <span>GitHub: leo-finance</span>
-        </div>
-        <div class="contact-item bounce-in" style="animation-delay: 0.4s">
-          <i class="icon">💼</i>
-          <span>LinkedIn: Leo Finance</span>
-        </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <span>LinkedIn: /in/leo-trader</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🐙</div>
+        <span>GitHub: /leo-trading</span>
       </div>
     </div>
   </section>
-
-  <!-- 彩蛋效果容器 -->
-  <div class="easter-egg-container">
-    <div class="particle" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"></div>
-  </div>
 </div>
